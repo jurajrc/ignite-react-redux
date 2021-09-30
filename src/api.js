@@ -1,5 +1,6 @@
 // Base URL
 const base_url = "https://api.rawg.io/api/";
+const api_key = "key=446dec9d080549cb8898a0cffe43c700";
 
 // Getting the month
 // januar vrati ako 0 preto + 1
@@ -32,6 +33,6 @@ const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
 const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 // Populat Games
-const popular_games = `games?dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`
+const popular_games = `games?${api_key}&dates=${lastYear},${currentDate}&ordering=-rating&page_size=10`
 
 export const popularGamesURL = () => `${base_url}${popular_games}`
