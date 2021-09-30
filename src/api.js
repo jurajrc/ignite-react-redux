@@ -2,6 +2,8 @@
 const base_url = "https://api.rawg.io/api/";
 
 // Getting the month
+// januar vrati ako 0 preto + 1
+// potrebujeme format 2021-08-30 preto je if ak je < 10
 const getCurrentMonth = () => {
   const month = new Date().getMonth() + 1 
   if(month < 10) {
