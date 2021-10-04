@@ -9,10 +9,12 @@ import { loadDetail } from '../actions/detailAction'
 
 const Game = ({ name, released, image, id }) => {
 
+
     // load ditail
     const dispatch = useDispatch()
     const loadDetailHandler = () => {
       dispatch(loadDetail(id))
+      document.body.style.overflow = "hidden"
     }
 
     return (
@@ -37,8 +39,7 @@ const StyledGame = styled(motion.div)`
      width: 100%;
      height: 40vh;
      object-fit: cover;
-     position: relative;
-     top: 5px;
+     
  }
 `
 
