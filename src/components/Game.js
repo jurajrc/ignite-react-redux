@@ -6,9 +6,11 @@ import { motion } from 'framer-motion'
 // Redux
 import { useDispatch } from 'react-redux'
 import { loadDetail } from '../actions/detailAction'
+// Small image
+import { smallImage } from '../util'
 
 const Game = ({ name, released, image, id }) => {
-
+    const stringPathId = id.toString();
 
     // load ditail
     const dispatch = useDispatch()
@@ -16,13 +18,14 @@ const Game = ({ name, released, image, id }) => {
       dispatch(loadDetail(id))
       document.body.style.overflow = "hidden"
     }
+    
 
     return (
-        <StyledGame onClick={loadDetailHandler} >
+        <StyledGame layoutId={stringPathId} onClick={loadDetailHandler} >
             <Link to={`/game/${id}`} >
-                <h3>{name}</h3>
+                <motion.h3 layoutId={`title ${stringPathId}`} >{name}</motion.h3>
                 <p>{released}</p>
-                <img src={image} alt={name} />
+                <motion.img layoutId={`image ${stringPathId}`} src={smallImage(image, 640)} alt={name} />
             </Link>
         </StyledGame>
     )
