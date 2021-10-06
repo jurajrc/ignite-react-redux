@@ -17,6 +17,7 @@ import gamepad from '../img/gamepad.svg'
 // Stars Image
 import starEmpty from '../img/star-empty.png'
 import starFull from '../img/star-full.png'
+import { fadeIn } from '../animations'
 
 
 const GameDetail = ({pathId}) => {
@@ -24,6 +25,7 @@ const GameDetail = ({pathId}) => {
     // Exit Detail
     const exitDetailHandler = (e) => {
       const element = e.target
+      console.log(element);
       if(element.classList.contains("shadow")) {
           document.body.style.overflow = "auto"
           history.push("/")
@@ -100,6 +102,9 @@ const GameDetail = ({pathId}) => {
                         <img src={smallImage(screen.image, 1280)} key={screen.id} alt={screen.image} />
                     ))}
                 </div>
+                <Back variants={fadeIn} initial="hidden" animate="show" >
+                    <p className="shadow">Back</p>
+                </Back>
             </Detail>
         </CardShadow>
         )}
@@ -116,6 +121,8 @@ const CardShadow = styled(motion.div)`
     left: 0;
     top: 0;
     z-index: 10;
+    cursor: alias;
+    
     &::-webkit-scrollbar{
         width: 0.5rem;
     }
@@ -124,6 +131,9 @@ const CardShadow = styled(motion.div)`
     }
     &::-webkit-scrollbar-track {
         background-color: white;
+    }
+    @media (max-width: 480px) {
+        overflow-x: hidden;
     }
 `
 const Detail = styled(motion.div)`
@@ -134,18 +144,48 @@ const Detail = styled(motion.div)`
     position: absolute;
     left: 10%;
     color: black;
+    cursor: default;
+    
     img {
         width: 100%;
     }
+    @media (max-width: 480px) {
+        width: 100%;
+        border-radius: 0rem;
+        padding: 1rem 0rem;
+        left: 0%;
+    }
+
 `
 const Stats = styled(motion.div)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    .rating {
+        align-items: center;
+    }
     img {
         width: 2rem;
         height: 2rem;
         display: inline;
+
+        @media (max-width: 700px) {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+        flex-direction: column;
+        align-items: center;
+        p{
+            font-size: 0.8rem;
+            padding: 0rem 1rem;
+        }
+        img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
     }
 `
 const Info = styled(motion.div)`
@@ -158,7 +198,12 @@ const Platforms = styled(motion.div)`
         margin-left: 1.5rem;
     }
     img {
-        margin-left: 3rem;
+        margin-left: 2rem;
+        @media (max-width: 700px) {
+        margin-left: 1rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
     }
 `
 const Media = styled(motion.div)`
@@ -166,12 +211,45 @@ const Media = styled(motion.div)`
     img {
         width: 100%;
     }
+    @media (max-width: 480px) {
+        margin-top: 2rem;
+      }
 `
 const Description = styled(motion.div)`
     margin: 5rem 0rem;
     p {
         font-size: 1rem;
     }
+    @media (max-width: 480px) {
+        margin: 2rem 0rem;
+        p {
+            padding: 0 1rem;
+        }
+    }
+`
+const Back = styled(motion.div)`
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: 3rem;
+    height: 3rem;
+    background: #000000b3;
+    border-radius: 50%;
+    display: none;
+    border: 1px solid #ffffff8b;
+
+    p {
+        color: white;
+        width: 100%;
+        height: 100%;
+        line-height: 2.8rem;
+        font-weight: bold;
+        padding-left: .12rem;
+    }
+    @media (max-width: 480px) {
+        display: block;
+    }
+
 `
 
 export default GameDetail
